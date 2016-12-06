@@ -39,6 +39,7 @@
   <modules>
     <module>brick-primary</module>
     <module>brick-proxool</module>
+    <module>velocity-engine</module>
   </modules>
 
   <dependencies>
