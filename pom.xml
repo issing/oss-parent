@@ -2,15 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-        <relativePath/>
-    </parent>
     <groupId>net.isger</groupId>
     <artifactId>oss-parent</artifactId>
-    <version>3</version>
+    <version>4</version>
     <packaging>pom</packaging>
 
     <name>oss-parent</name>
@@ -33,10 +27,6 @@
         <!-- 基础版本 -->
         <junit.version>3.8.1</junit.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <!-- 公共仓库 -->
-        <oss.server>oss</oss.server>
-        <oss.repository.snapshots>https://oss.sonatype.org/content/repositories/snapshots/</oss.repository.snapshots>
-        <oss.repository.releases>https://oss.sonatype.org/service/local/staging/deploy/maven2/</oss.repository.releases>
     </properties>
 
     <dependencies>
@@ -108,18 +98,18 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.11.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>${oss.server}</id>
-                    <url>${oss.repository.snapshots}</url>
-                </snapshotRepository>
-                <repository>
-                    <id>${oss.server}</id>
-                    <url>${oss.repository.releases}</url>
-                </repository>
-            </distributionManagement>
         </profile>
         <!-- 文档概述 -->
         <profile>
